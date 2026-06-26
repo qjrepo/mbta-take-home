@@ -9,7 +9,7 @@ This module analyzes all subway routes to find:
 
 from api import MBTAClient
 
-def run_question_2():
+def run_question_2(silent=False):
     """
     Main function to analyze subway routes and stops.
     
@@ -43,12 +43,17 @@ def run_question_2():
     routes_with_max_stops, routes_with_min_stops = find_max_min_routes(stop_counts, routes_stops)
 
     # Display results for part 1 & 2
-    print_max_min_routes(routes_with_max_stops, routes_with_min_stops)
+    # Only print if not silent
+    if not silent:
+        print_max_min_routes(routes_with_max_stops, routes_with_min_stops)
     
     # Part 3: Find stops that connect 2+ routes
     stops_with_2_or_more_than_2_routes = find_transfer_stops(stop_routes)
+    
     # Display stops that connect 2+ routes along with relevant route names
-    print_transfer_stops(stops_with_2_or_more_than_2_routes)
+    # Only print if not silent
+    if not silent:
+        print_transfer_stops(stops_with_2_or_more_than_2_routes)
     
     # Return routes_stops for use in question 3 (pathfinding)
     return routes_stops

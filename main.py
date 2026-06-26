@@ -9,10 +9,15 @@ Orchestrates the three questions:
 """
 
 from questions import run_question_1, run_question_2,run_question_3
+import sys
 
-def main():
+def main(question=None):
     """
     Main orchestration function for MBTA transit analysis.
+
+    Args:
+        question (str): Which question to run
+            Options: "question1", "question2", "question3", or None (all)
     
     Executes three questions in sequence:
     1. Question 1: Display all subway routes
@@ -28,17 +33,26 @@ def main():
         RuntimeError: From any of the questions (API errors, etc.)
     """
     try:
+        # Run Question 1
         # Question 1: List all MBTA subway routes (light rail + heavy rail)
         # Fetches and displays route long names
-        run_question_1()
+        if question is None or question == "question1":
+            run_question_1()
+        # Run Question 2 (silent if only running question 3)
         # Question 2: Analyze subway routes
         # Finds: routes with max/min stops, transfer stops
         # Returns: routes_stops mapping for use in Question 3
-        routes_stops = run_question_2()
+        if question is None or question in ["question2", "question3"]:
+            # if question == "question3", silent = True
+            silent = (question == "question3")
+            routes_stops = run_question_2(silent=silent)
+        
+        # Run Question 3
         # Question 3: Find path between two stops
         # Uses BFS to find optimal route(s)
         # Requires routes_stops from Question 2
-        run_question_3(routes_stops)
+        if question is None or question == "question3":
+            run_question_3(routes_stops)
         
     except RuntimeError as e:
         # Catch API errors or data validation errors
@@ -46,4 +60,6 @@ def main():
         print(f"Error: {e}")
 
 if __name__ == "__main__":
-    main()
+    question = sys.argv[1] if len(sys.argv) > 1 else None
+    main(question)
+    

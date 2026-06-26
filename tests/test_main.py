@@ -15,7 +15,7 @@ class TestMain:
         """Test that main calls all three questions in order."""
         mock_q2.return_value = {}
         
-        main()
+        main(None)
         
         mock_q1.assert_called_once()
         mock_q2.assert_called_once()
@@ -28,7 +28,7 @@ class TestMain:
         routes_stops = {"Red": {"name": "Red Line", "stops": []}}
         mock_q2.return_value = routes_stops
         
-        main()
+        main(None)
         
         mock_q3.assert_called_once_with(routes_stops)
     
@@ -38,7 +38,7 @@ class TestMain:
         """Test error handling when RuntimeError occurs."""
         mock_q1.side_effect = RuntimeError("API error")
         
-        main()
+        main(None)
         
         printed = [str(call[0][0]) for call in mock_print.call_args_list]
         assert any("API error" in str(p) for p in printed)
@@ -50,7 +50,7 @@ class TestMain:
         """Test that error in Q2 stops Q3 from running."""
         mock_q2.side_effect = RuntimeError("Q2 failed")
         
-        main()
+        main(None)
         
         mock_q3.assert_not_called()
     
@@ -60,9 +60,7 @@ class TestMain:
     def test_main_completes_without_exception(self, mock_q1, mock_q2, mock_q3):
         """Test that main completes successfully."""
         mock_q2.return_value = {}
-        
         try:
-            main()
+            main(None)
         except Exception as e:
             pytest.fail(f"main() raised {type(e).__name__}: {e}")
- 

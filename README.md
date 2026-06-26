@@ -24,7 +24,13 @@ echo "MBTA_API_KEY=your_key" > .env
 ## Run
  
 ```bash
+# Run all questions
 python3 main.py
+
+# Run specific question
+python3 main.py question1  # Question 1 only
+python3 main.py question2  # Question 2 only
+python3 main.py question3  # Question 2 + 3, 2 silent
 ```
  
 ## Run tests

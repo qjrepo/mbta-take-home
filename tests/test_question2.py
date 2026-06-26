@@ -131,7 +131,7 @@ class TestRunQuestion2:
         mock_client.get_routes.return_value = routes
         mock_client.get_stops_for_route.return_value = stops
         
-        result = run_question_2()
+        result = run_question_2(silent=True)
         
         assert isinstance(result, dict)
         assert "Red" in result
@@ -144,5 +144,5 @@ class TestRunQuestion2:
         mock_client.get_routes.side_effect = RuntimeError("API error")
         
         with pytest.raises(RuntimeError):
-            run_question_2()
+            run_question_2(silent=True)
  
