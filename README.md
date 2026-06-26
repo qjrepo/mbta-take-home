@@ -33,8 +33,6 @@ python3 main.py
 python3 -m pytest tests/ -v
 ```
  
-All 36 tests pass ✅
- 
 ## Project structure
  
 ```
