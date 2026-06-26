@@ -1,0 +1,18 @@
+# Virtual environment
+venv/
+
+# Python cache
+__pycache__/
+
+# Environment variables
+.env
+
+# OS
+.DS_Store
+
+# Generated data files from MBTA API
+file.json
+stops.json
+
+# Pytest cache
+.pytest_cache/
