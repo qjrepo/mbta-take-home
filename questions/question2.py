@@ -2,8 +2,8 @@
 Question 2: Analyze MBTA subway routes for stops and transfer stops.
  
 This module analyzes all subway routes to find:
-1. Route(s) with the maximum number of stops
-2. Route(s) with the minimum number of stops
+1. Route(s) with the maximum number of stops along with stop counts
+2. Route(s) with the minimum number of stops along with stop counts
 3. Stops that have two or more routes connect to it
 """
 
@@ -235,12 +235,13 @@ def find_transfer_stops(stop_routes):
         routes_num = len(routes)
         # A transfer stop must have 2 or more routes connect to it
         if routes_num >= 2:
+            # Using composite key (stop_id, stop_name) because stop names may not be unique
             stop_key = (stop_id, stop_name)
             stops_with_2_or_more_than_2_routes[stop_key] = routes
     
     return stops_with_2_or_more_than_2_routes
  
- 
+
 def print_transfer_stops(stops_with_2_or_more_than_2_routes):
     """
     Display all transfer stops and the routes they connect.

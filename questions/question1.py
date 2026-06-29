@@ -31,16 +31,7 @@ choice. It reduces network payload, latency, and local memory usage:
 3. REDUCES LOCAL MEMORY USAGE
    - Client only holds subway route data in memory
    - No need to store unnecessary routes
- 
-WHEN TO USE CLIENT-SIDE FILTERING:
-Only filter locally for:
-- Small cached subsets (already in memory)
-- UI toggles/display changes
- 
-CONCLUSION:
-I chose server-side filtering here because it reduces network payload, latency, and 
-local memory usage. This follows best practices for API design and leverages the 
-MBTA API's capabilities efficiently.
+
 """
 from api import MBTAClient
 

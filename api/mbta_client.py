@@ -4,7 +4,6 @@ MBTA API Client Module
 Provides MBTAClient for communicating with the MBTA (Massachusetts Bay Transportation Authority)
 REST API. Handles HTTP requests, error handling, and API key management.
 """
-
 import requests
 import os
 
@@ -95,12 +94,11 @@ class MBTAClient:
         
         Args:
             params (dict): Query parameters to filter routes
-                          Example: {"filter[type]": "0,1"} for subway only
+                Example: {"filter[type]": "0,1"} for subway only
         
         Returns:
             list: List of route objects from API
-                 Example: [{"id": "Red", "attributes": {...}}, ...]
-        
+                Example: [{"id": "Red", "attributes": {...}}, ...]
         Note:
             API response format: {"data": [routes]}
             This method extracts just the "data" list
@@ -114,13 +112,12 @@ class MBTAClient:
         
         Args:
             route_id (str): Route ID to fetch stops for
-                           Example: "Red", "Orange", "Blue"
+                Example: "Red", "Orange", "Blue"
         
         Returns:
             list: List of stop objects on the route
-                 Empty list if no stops found or API error
-                 Example: [{"id": "place-astao", "attributes": {...}}, ...]
-        
+                Empty list if no stops found or API error
+                Example: [{"id": "place-astao", "attributes": {...}}, ...]
         Note:
             Uses server-side filtering to reduce network payload
             Returns empty list as default if "data" key missing
@@ -128,9 +125,3 @@ class MBTAClient:
         params = {"filter[route]": route_id}
         data = self.get("stops", params)
         return data.get("data", [])
-
-
-    
-            
-
-

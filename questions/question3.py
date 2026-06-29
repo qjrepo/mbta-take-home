@@ -235,16 +235,3 @@ def bfs_find_routes(start_id, end_id, stop_id_to_routes_id, route_id_to_stops_id
                     visited.add(next_stop)
          
     return routes_found
-
-
-    
-
-
-
-
-
-
-
-
-
-    
